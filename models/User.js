@@ -22,7 +22,7 @@ class User {
   // RETRIEVE
   static getAll() {
     return db.any(`
-    select * from users`)
+     select * from users`)
       .then(userArray => {
         const instanceArray = userArray.map(userObj => {
           const u = new User(userObj.id, userObj.name);
