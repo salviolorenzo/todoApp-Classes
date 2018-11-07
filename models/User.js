@@ -54,6 +54,7 @@ class User {
   }
   // UPDATE
   updateName(name) {
+    this.name = name;
     return db.result(`
     update users
       set name=$2
@@ -74,6 +75,8 @@ class User {
       [id]);
   }
 }
+
+module.exports = User;
 
 
 // WITHOUT CLASS

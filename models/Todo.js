@@ -1,5 +1,104 @@
 const db = require('./db');
 
+class Todo {
+  constructor(id, name, isCompleted) {
+    this.id = id,
+      this.name = name,
+      this.isCompleted = isCompleted
+  }
+
+  // CREATE
+  addTodo(name, isCompleted) {
+    return db.one(
+      `insert into todos(name, isCompleted)
+      values 
+        ($1, $2)
+      returning id`,
+      [name, isCompleted]
+    )
+      .then(data => {
+        const t = new Todo(data.id, name, isCompleted);
+        return t;
+      })
+  }
+
+  // RETRIEVE
+  static getAll() {
+    return db.any(`
+    select * from todos`)
+      .then(todoArray => {
+        const instanceArray = todoArray.map(todoObj => {
+          const t = new Todo(todoObj.id, todoObj.name, todoObj.isCompleted);
+          return t;
+        })
+        return instanceArray;
+      })
+  }
+
+  static getById(id) {
+    return db.one(`
+    select * from todos where id =$1`, [id])
+      .then(result => {
+        const t = new Todo(result.id, result.name, result.isCompleted);
+        return t;
+      })
+  }
+  // UPDATE
+  assignTodo(userId) {
+    return db.result(`
+      update todos
+        set user_id=$2
+      where id=$1`,
+      [this.id, userId]);
+  }
+
+  updateName(name) {
+    this.name = name;
+    return db.result(`update todos
+      set name=$2
+      where id =$1`,
+      [this.id, name])
+  }
+
+
+  // DELETE
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // CREATE
 function add(name, isCompleted) {
   return db.one(
