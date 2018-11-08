@@ -16,12 +16,23 @@ app.get('/', (req, res) => {
 app.get('/users', (req, res) => {
   User.getAll()
     .then(users => {
-      res.send(users);
-    })
+      let userList = ``;
+      users.forEach(user => {
+        userList += `<li>${user.name}</li>`
+      });
+      let thePage = `<!doctype html>
+      <html>
+        <head></head>
+        <body>
+          <ul>${userList}</ul>
+        </body>
+      </html>`;
+      res.send(thePage);
+    });
 })
 
-app.get('/users/user', (req, res) => {
-  User.getById(4)
+app.get('/users/:id([0-9]+)', (req, res) => {
+  User.getById(req.params.id)
     .then(user => {
       res.send(user);
     })
@@ -53,6 +64,6 @@ app.get('/todos/todo', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log(`Server started...`);
+  console.log(`Ready...`);
 })
 
