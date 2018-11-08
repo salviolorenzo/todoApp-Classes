@@ -17,13 +17,32 @@ function home() {
     </html>`;
 }
 
+function users(content) {
+  return `<!doctype html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="styles/index.css" rel="stylesheet"
+  </head>
+  <body>
+    <header>
+    </header>
+    <section>
+      <h1>Users</h1>
+      <ul>${content}</ul>
+    </section
+  </body>
+
+  </html>`;
+}
+
 function register() {
   return `<!doctype html>
     <html>
       <head>
       </head>
       <body>
-        <header>
+        <header style="border-bottom: 1px solid black;">
           <h1>
             Todoist
           </h1>
@@ -49,6 +68,7 @@ function register() {
 
 
 module.exports = {
-  page,
-  register
+  home,
+  register,
+  users
 }

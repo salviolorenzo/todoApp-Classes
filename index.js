@@ -8,13 +8,14 @@ const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
 const templates = require(`./templates`);
-// ROOT
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+// ROOT
 app.get('/', (req, res) => {
-  res.send('What up');
+  res.send(home());
 })
 
 
@@ -26,7 +27,7 @@ app.get('/users', (req, res) => {
       users.forEach(user => {
         userList += `<li>Name: ${user.name}<br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
       });
-      res.send(templates.page(userList));
+      res.send(templates.users(userList));
     });
 })
 
