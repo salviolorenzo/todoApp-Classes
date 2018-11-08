@@ -4,10 +4,43 @@ function home() {
     <html>
     <head>
       <meta charset="UTF-8">
-      <link href="styles/index.css" rel="stylesheet"
+      <link href="index.css" rel="stylesheet">
+      <style>
+        hmtl, body{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        body{ 
+          font-family: 'Courier New', Courier, monospace;
+        }
+
+        header{
+          border: 1px solid rgba(0,0,0,0.4);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav{
+          width: 100%;
+          list-style-type: none;
+          display: flex;
+          padding: 0;
+          justify-content: space-evenly;
+        }
+        </style>
     </head>
     <body>
       <header>
+        <h1>TODOIST</h1>
+        <nav>
+        <li>Home</li>
+        <li>My Todos</li>
+        <li>Register</li>
+      </nav>
       </header>
       <section>
         <h1>Welcome!</h1>
@@ -22,11 +55,44 @@ function users(content) {
   <html>
   <head>
     <meta charset="UTF-8">
-    <link href="styles/index.css" rel="stylesheet"
-  </head>
+    <link href="styles/index.css" rel="stylesheet">
+    <style>
+    hmtl, body{
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{ 
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    header{
+      border: 1px solid rgba(0,0,0,0.4);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav{
+      width: 100%;
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      justify-content: space-evenly;
+    }
+  </style>
+</head>
   <body>
-    <header>
-    </header>
+  <header>
+    <h1>TODOIST</h1>
+    <nav>
+      <li>Home</li>
+      <li>My Todos</li>
+      <li>Register</li>
+    </nav>
+</header>
     <section>
       <h1>Users</h1>
       <ul>${content}</ul>
@@ -40,6 +106,35 @@ function register() {
   return `<!doctype html>
     <html>
       <head>
+        <meta charset="UTF-8">
+        <link href="styles/index.css" rel="stylesheet">
+        <style>
+        hmtl, body{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        body{ 
+          font-family: 'Courier New', Courier, monospace;
+        }
+
+        header{
+          border: 1px solid rgba(0,0,0,0.4);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav{
+          width: 100%;
+          list-style-type: none;
+          display: flex;
+          padding: 0;
+          justify-content: space-evenly;
+        }
+        </style>
       </head>
       <body>
         <header style="border-bottom: 1px solid black;">

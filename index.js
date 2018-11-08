@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ROOT
 app.get('/', (req, res) => {
-  res.send(home());
+  res.send(templates.home());
 })
 
 
