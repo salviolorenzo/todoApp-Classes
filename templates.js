@@ -1,4 +1,4 @@
-function page(content) {
+function home() {
   // let contentItem = `<li>${content}</li>`;
   return `<!doctype html>
     <html>
@@ -7,8 +7,13 @@ function page(content) {
       <link href="styles/index.css" rel="stylesheet"
     </head>
     <body>
-      <ul>${content}</ul>
+      <header>
+      </header>
+      <section>
+        <h1>Welcome!</h1>
+      </section
     </body>
+
     </html>`;
 }
 
@@ -18,12 +23,26 @@ function register() {
       <head>
       </head>
       <body>
-        <form method="post">
-          <input type="text" name="name" placeholder="Name">
-          <input type="email" name="email" placeholder="email">
-          <input type="text" name="phone" placeholder="phone">
-          <input type="submit" name="submit">
-        </form>
+        <header>
+          <h1>
+            Todoist
+          </h1>
+          <nav>
+            <li>Home</li>
+            <li>My Todos</li>
+            <li>Register</li>
+          </nav>
+        </header>
+        <section class="main-form">
+          <form method="post">
+            <input type="text" name="name" placeholder="Name">
+            <input type="email" name="email" placeholder="email">
+            <input type="text" name="phone" placeholder="phone">
+            <input type="submit" name="submit">
+          </form>
+        </section>
+        <footer>
+        </footer>
       </body>
     </html>`;
 }
