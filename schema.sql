@@ -1,7 +1,9 @@
 
 create table users(
   id serial primary key,
-  name text
+  name text,
+  email text,
+  phone text
 );
 
 create table todos(

@@ -1,21 +1,23 @@
 const db = require('./db');
 
 class User {
-  constructor(id, name) {
-    this.id = id
-    this.name = name
+  constructor(id, name, email, phone) {
+    this.id = id,
+      this.name = name,
+      this.email = email,
+      this.phone = phone
   }
 
   // CREATE
-  static add(name) {
+  static add(name, email, phone) {
     return db.one(`
-      insert into users(name)
+      insert into users(name, email, phone)
       values
-        ($1)
+        ($1, $2, $3)
       returning id`,
-      [name])
+      [name, email, phone])
       .then(data => {
-        const u = new User(data.id, name);
+        const u = new User(data.id, name, email, phone);
         return u;
       })
   }
@@ -25,7 +27,7 @@ class User {
      select * from users`)
       .then(userArray => {
         const instanceArray = userArray.map(userObj => {
-          const u = new User(userObj.id, userObj.name);
+          const u = new User(userObj.id, userObj.name, userObj.email, userObj.phone);
           return u;
         });
         return instanceArray;
@@ -38,7 +40,7 @@ class User {
     where id=$1`,
       [id])
       .then(result => {
-        const u = new User(result.id, result.name);
+        const u = new User(result.id, result.name, result.email, result.phone);
         return u;
       })
   }

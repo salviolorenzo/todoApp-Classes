@@ -7,21 +7,15 @@ const app = express();
 const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
+const templates = require(`./templates`);
 // ROOT
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 app.get('/', (req, res) => {
   res.send('What up');
 })
-
-app.post('/', (req, res) => {
-  User.add('jules')
-    .then(user => {
-      user = req.body;
-      return user;
-    })
-})
-
 
 
 // Users
@@ -30,19 +24,28 @@ app.get('/users', (req, res) => {
     .then(users => {
       let userList = ``;
       users.forEach(user => {
-        userList += `<li>${user.name}</li>`
+        userList += `<li>${user.name}, ${user.email}, ${user.phone}</li>`
       });
-      let thePage = `<!doctype html>
-      <html>
-        <head></head>
-        <body>
-          <ul>${userList}</ul>
-        </body>
-      </html>`;
-      res.send(thePage);
+      res.send(templates.page(userList));
     });
 })
 
+
+// User Registry
+app.get('/users/register', (req, res) => {
+  res.send(templates.register());
+});
+
+app.post(`/users/register`, (req, res) => {
+  console.log(req.body);
+  User.add(req.body.name, req.body.email, req.body.phone)
+    .then(user => {
+      res.redirect(`/users/${user.id}`);
+    })
+})
+
+
+// User Info by ID
 app.get('/users/:id([0-9]+)', (req, res) => {
   User.getById(req.params.id)
     .then(user => {
@@ -51,12 +54,13 @@ app.get('/users/:id([0-9]+)', (req, res) => {
 })
 
 
-app.get('/users/user/todos', (req, res) => {
-  User.getById(2)
+app.get('/users/:id([0-9]+)/todos', (req, res) => {
+  User.getById(req.params.id)
     .then(user => {
       user.getTodos()
         .then(todo => {
           res.send(todo);
+
         })
     })
 })
@@ -68,8 +72,8 @@ app.get('/todos', (req, res) => {
     })
 })
 
-app.get('/todos/todo', (req, res) => {
-  Todo.getById(4)
+app.get('/todos/:id([0-9]+)', (req, res) => {
+  Todo.getById(req / params / id)
     .then(todo => {
       res.send(todo);
     })
