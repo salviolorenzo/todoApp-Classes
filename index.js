@@ -8,9 +8,21 @@ const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
 // ROOT
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
   res.send('What up');
 })
+
+app.post('/', (req, res) => {
+  User.add('jules')
+    .then(user => {
+      user = req.body;
+      return user;
+    })
+})
+
+
 
 // Users
 app.get('/users', (req, res) => {
