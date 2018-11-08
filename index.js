@@ -24,7 +24,7 @@ app.get('/users', (req, res) => {
     .then(users => {
       let userList = ``;
       users.forEach(user => {
-        userList += `<li>${user.name}, ${user.email}, ${user.phone}</li>`
+        userList += `<li>Name: ${user.name}<br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
       });
       res.send(templates.page(userList));
     });
@@ -50,6 +50,17 @@ app.get('/users/:id([0-9]+)', (req, res) => {
   User.getById(req.params.id)
     .then(user => {
       res.send(user);
+    })
+})
+
+app.get(`/users/:id([0-9]+)/edit`, (req, res) => {
+  res.send(templates.register());
+})
+
+app.post(`/users/:id([0-9]+)/edit`, (req, res) => {
+  User.updateName(req.body.name)
+    .then(user => {
+      res.redirect(`/users/${user.id}`);
     })
 })
 
