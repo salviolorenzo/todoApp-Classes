@@ -17,6 +17,7 @@ function home() {
       </header>
       <section>
         <h1>Welcome!</h1>
+
       </section
     </body>
 
@@ -45,9 +46,8 @@ function users(content) {
     <section>
       <h1>Users</h1>
       <ul>${content}</ul>
-    </section
+    </section>
   </body>
-
   </html>`;
 }
 
