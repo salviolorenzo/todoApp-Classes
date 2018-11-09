@@ -55,34 +55,9 @@ function users(content) {
   <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="styles/index.css" rel="stylesheet">
-    <style>
-    hmtl, body{
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    body{ 
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    header{
-      border: 1px solid rgba(0,0,0,0.4);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav{
-      width: 100%;
-      list-style-type: none;
-      display: flex;
-      padding: 0;
-      justify-content: space-evenly;
-    }
-  </style>
 </head>
   <body>
   <header>
@@ -107,34 +82,9 @@ function register() {
     <html>
       <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="styles/index.css" rel="stylesheet">
-        <style>
-        hmtl, body{
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-
-        body{ 
-          font-family: 'Courier New', Courier, monospace;
-        }
-
-        header{
-          border: 1px solid rgba(0,0,0,0.4);
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        nav{
-          width: 100%;
-          list-style-type: none;
-          display: flex;
-          padding: 0;
-          justify-content: space-evenly;
-        }
-        </style>
       </head>
       <body>
         <header style="border-bottom: 1px solid black;">
@@ -166,34 +116,9 @@ function assignTodo() {
   <html>
     <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link href="styles/index.css" rel="stylesheet">
-      <style>
-      hmtl, body{
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      body{ 
-        font-family: 'Courier New', Courier, monospace;
-      }
-
-      header{
-        border: 1px solid rgba(0,0,0,0.4);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      nav{
-        width: 100%;
-        list-style-type: none;
-        display: flex;
-        padding: 0;
-        justify-content: space-evenly;
-      }
-      </style>
     </head>
     <body>
       <header style="border-bottom: 1px solid black;">

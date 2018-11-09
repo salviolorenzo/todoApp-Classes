@@ -7,7 +7,7 @@ const app = express();
 const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
-const templates = require(`./templates`);
+const templates = require(`./views/templates`);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
