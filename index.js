@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
 })
 
 
-// User Registry
+// User Registry || CREATE NEW USER
 app.get('/users/register', (req, res) => {
   res.send(templates.register());
 });
@@ -58,11 +58,14 @@ app.get(`/users/:id([0-9]+)/edit`, (req, res) => {
   res.send(templates.register());
 })
 
+// UPDATE THE NAME OF A SPECIFIC USER
 app.post(`/users/:id([0-9]+)/edit`, (req, res) => {
-  User.updateName(req.body.name)
+  const newName = req.body.name;
+  User.getById(req.params.id)
     .then(user => {
+      user.updateName(newName)
       res.redirect(`/users/${user.id}`);
-    })
+    });
 })
 
 
@@ -72,7 +75,6 @@ app.get('/users/:id([0-9]+)/todos', (req, res) => {
       user.getTodos()
         .then(todo => {
           res.send(todo);
-
         })
     })
 })
@@ -84,10 +86,23 @@ app.get('/todos', (req, res) => {
     })
 })
 
-app.get('/todos/:id([0-9]+)', (req, res) => {
-  Todo.getById(req / params / id)
+app.get('/todos/:id([0-9]+)/', (req, res) => {
+  Todo.getById(req.params.id)
     .then(todo => {
       res.send(todo);
+    })
+})
+
+// ASSIGN TODOS BASED ON USER ID
+app.get(`/todos/:id([0-9]+)/assign`, (req, res) => {
+  res.send(templates.assignTodo());
+})
+app.post(`/todos/:id([0-9]+)/assign`, (req, res) => {
+  const userId = req.body.id;
+  Todo.getById(req.params.id)
+    .then(todo => {
+      todo.assignTodo(userId);
+      res.redirect(`/todos/${req.params.id}`)
     })
 })
 
