@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
+app.use(express.static('public'));
+
 const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
