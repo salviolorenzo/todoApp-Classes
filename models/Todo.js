@@ -8,7 +8,7 @@ class Todo {
   }
 
   // CREATE
-  addAtodo(name, isCompleted) {
+  static add(name, isCompleted) {
     return db.one(
       `insert into todos(name, isCompleted)
       values 

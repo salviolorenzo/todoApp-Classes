@@ -135,16 +135,12 @@ app.get(`/todos/add`, (req, res) => {
 
 app.post(`/todos/add`, (req, res) => {
   let compl = false;
-  debugger;
   Todo.add(req.body.name, compl)
     .then(todo => {
       console.log(todo);
       res.redirect(`/todos`);
     })
-
 })
-
-console.log(Todo.addAtodo('hey', false));
 
 app.listen(3000, () => {
   console.log(`Ready...`);
