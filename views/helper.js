@@ -6,6 +6,14 @@ function addUser(users) {
   return userList;
 }
 
+function showTodos(todos) {
+  let todosList = ``;
+  todos.forEach(todo => {
+    todosList += `<li>Title: ${todo.name}<br> Completed: false</li>`
+  });
+  return todosList;
+}
+
 function header() {
   return `
   <header>
@@ -44,6 +52,13 @@ function register() {
 </section>`
 }
 
+function todos(content) {
+  return `<section>
+  <h1>Todos</h1>
+  <ul>${content}</ul>
+  </section>`
+}
+
 function addTodo() {
   return `
     <section class="todo-form">
@@ -67,9 +82,11 @@ function assignTodo() {
 
 module.exports = {
   addUser,
+  showTodos,
   header,
   footer,
   users,
+  todos,
   register,
   addTodo,
   assignTodo

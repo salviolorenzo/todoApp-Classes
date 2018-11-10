@@ -96,8 +96,13 @@ app.get('/users/:id([0-9]+)/todos', (req, res) => {
 app.get('/todos', (req, res) => {
   Todo.getAll()
     .then(todos => {
-      res.send(todos);
-    })
+      res.send(page(`
+      ${helper.header()}
+      ${helper.todos(helper.showTodos(todos))}
+      ${helper.footer()}`
+      ));
+    });
+
 })
 
 app.get('/todos/:id([0-9]+)/', (req, res) => {
