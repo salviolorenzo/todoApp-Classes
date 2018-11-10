@@ -9,7 +9,8 @@ app.use(express.static('public'));
 const User = require(`./models/User`);
 const Todo = require(`./models/Todo`);
 
-const templates = require(`./views/templates`);
+const page = require(`./views/page`);
+const helper = require(`./views/helper`);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,7 +18,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ROOT
 app.get('/', (req, res) => {
-  res.send(templates.home());
+  res.send(page(`
+    ${helper.header()}
+    ${helper.footer()}
+  `));
 })
 
 
@@ -25,11 +29,11 @@ app.get('/', (req, res) => {
 app.get('/users', (req, res) => {
   User.getAll()
     .then(users => {
-      let userList = ``;
-      users.forEach(user => {
-        userList += `<li>Name: ${user.name}<br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
-      });
-      res.send(templates.users(userList));
+      res.send(page(`
+      ${helper.header()}
+      ${helper.users(helper.addUser(users))}
+      ${helper.footer()}`
+      ));
     });
 })
 
