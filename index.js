@@ -109,7 +109,11 @@ app.get('/todos/:id([0-9]+)/', (req, res) => {
 
 // ASSIGN TODOS BASED ON USER ID
 app.get(`/todos/:id([0-9]+)/assign`, (req, res) => {
-  res.send(helper.assignTodo());
+  res.send(page(`
+  ${helper.header()}
+  ${helper.assignTodo()}
+  ${helper.footer()}
+  `));
 })
 app.post(`/todos/:id([0-9]+)/assign`, (req, res) => {
   const userId = req.body.id;
@@ -119,6 +123,28 @@ app.post(`/todos/:id([0-9]+)/assign`, (req, res) => {
       res.redirect(`/todos/${req.params.id}`)
     })
 })
+
+// ADD Todo
+app.get(`/todos/add`, (req, res) => {
+  res.send(page(
+    `${helper.header()}
+    ${helper.addTodo()}
+    ${helper.footer()}`
+  ));
+})
+
+app.post(`/todos/add`, (req, res) => {
+  let compl = false;
+  debugger;
+  Todo.add(req.body.name, compl)
+    .then(todo => {
+      console.log(todo);
+      res.redirect(`/todos`);
+    })
+
+})
+
+console.log(Todo.addAtodo('hey', false));
 
 app.listen(3000, () => {
   console.log(`Ready...`);

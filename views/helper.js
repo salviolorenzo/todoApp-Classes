@@ -44,8 +44,19 @@ function register() {
 </section>`
 }
 
+function addTodo() {
+  return `
+    <section class="todo-form">
+      <form method="post">
+        <input type="text" name="name" placeholder="Title">
+        <input type="submit" name="Submit" value="Add">
+      </form>
+    </section>
+  `
+}
+
 function assignTodo() {
-  return `      <section class="main-form">
+  return `<section class="main-form">
   <h1>Assign Todos</h1>
     <form method="post">
       <input type="text" name="id" placeholder="UserId">
@@ -60,5 +71,6 @@ module.exports = {
   footer,
   users,
   register,
+  addTodo,
   assignTodo
 }
