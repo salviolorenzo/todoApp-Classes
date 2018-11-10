@@ -40,7 +40,11 @@ app.get('/users', (req, res) => {
 
 // User Registry || CREATE NEW USER
 app.get('/users/register', (req, res) => {
-  res.send(templates.register());
+  res.send(page(`
+  ${helper.header()}
+  ${helper.register()}
+  ${helper.footer()}
+  `));
 });
 
 app.post(`/users/register`, (req, res) => {
@@ -61,7 +65,11 @@ app.get('/users/:id([0-9]+)', (req, res) => {
 })
 
 app.get(`/users/:id([0-9]+)/edit`, (req, res) => {
-  res.send(templates.register());
+  res.send(page(`
+  ${helper.header()}
+  ${helper.register()}
+  ${helper.footer()}
+  `));
 })
 
 // UPDATE THE NAME OF A SPECIFIC USER
@@ -101,7 +109,7 @@ app.get('/todos/:id([0-9]+)/', (req, res) => {
 
 // ASSIGN TODOS BASED ON USER ID
 app.get(`/todos/:id([0-9]+)/assign`, (req, res) => {
-  res.send(templates.assignTodo());
+  res.send(helper.assignTodo());
 })
 app.post(`/todos/:id([0-9]+)/assign`, (req, res) => {
   const userId = req.body.id;
