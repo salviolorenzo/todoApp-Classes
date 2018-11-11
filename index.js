@@ -98,7 +98,7 @@ app.post(`/users/:id([0-9]+)/delete`, (req, res) => {
   User.getById(req.params.id)
     .then(user => {
       if (req.body.choice === "yes") {
-        User.deleteById(user);
+        user.deleteSelf();
         res.redirect('/users')
       }
     })
