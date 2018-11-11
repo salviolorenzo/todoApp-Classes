@@ -83,7 +83,35 @@ app.post(`/users/:id([0-9]+)/edit`, (req, res) => {
 })
 
 // DELETE A USER
+app.get(`/users/:id([0-9]+)/delete`, (req, res) => {
+  User.getById(req.params.id)
+    .then(user => {
+      res.send(page(`
+        ${helper.header()}
+        ${helper.deleteUser(user)}
+        ${helper.footer()}
+      `))
+    })
+})
 
+app.post(`/users/:id([0-9]+)/delete`, (req, res) => {
+  User.getById(req.params.id)
+    .then(user => {
+      if (req.body.choice === "yes") {
+        User.deleteById(user);
+        res.redirect('/users')
+      }
+    })
+  // if (req.body.choice === 'yes') {
+  //   User.deleteById(req.params.id)
+  //     .then(() => {
+  //       res.redirect(`/users`);
+  //     })
+  // }
+  // else {
+  //   res.redirect(`/users`);
+  // }
+})
 
 
 app.get('/users/:id([0-9]+)/todos', (req, res) => {

@@ -52,6 +52,18 @@ function register() {
 </section>`
 }
 
+function deleteUser(user) {
+  return `
+    <section>
+      <h1>Are you sure you want to delete ${user.name}?</h1>
+      <form method="post">
+        <input type="radio" name="choice" value="yes">Yes
+        <input type="radio" name="choice" value="no">No
+        <input type="submit" name="submit" value="Submit">
+      </form>
+    </section>`
+}
+
 function todos(content) {
   return `<section>
   <h1>Todos</h1>
@@ -80,12 +92,15 @@ function assignTodo() {
   </section>`
 }
 
+
+
 module.exports = {
   addUser,
   showTodos,
   header,
   footer,
   users,
+  deleteUser,
   todos,
   register,
   addTodo,
