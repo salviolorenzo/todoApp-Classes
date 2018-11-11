@@ -1,7 +1,7 @@
 function addUser(users) {
   let userList = ``;
   users.forEach(user => {
-    userList += `<li>Name: ${user.name}<br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
+    userList += `<li>Name: <a href="/users/${user.id}/todos">${user.name}</a><br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
   });
   return userList;
 }

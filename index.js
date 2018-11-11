@@ -82,13 +82,16 @@ app.post(`/users/:id([0-9]+)/edit`, (req, res) => {
     });
 })
 
+// DELETE A USER
+
+
 
 app.get('/users/:id([0-9]+)/todos', (req, res) => {
   User.getById(req.params.id)
     .then(user => {
       user.getTodos()
         .then(todo => {
-          res.send(todo);
+          res.send(helper.showTodos(todo));
         })
     })
 })
