@@ -7,10 +7,12 @@ hmtl, body{
 
 body{
   font-family: 'Courier New', Courier, monospace;
+  background-color: antiquewhite;
 }
 
 header{
-  border: 1px solid rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+  background-color: #f5f5f5;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
