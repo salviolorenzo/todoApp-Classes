@@ -1,7 +1,7 @@
 function addUser(users) {
   let userList = ``;
   users.forEach(user => {
-    userList += `<li>Name: <a href="/users/${user.id}/todos">${user.name}</a><br>Email: ${user.email}<br>Phone Number: ${user.phone}</li>`
+    userList += `<li>Name: <a href="/users/${user.id}/todos">${user.name}</a><br>Email: ${user.email}<br>Phone Number: ${user.phone}<br><a href="/users/${user.id}/delete">Delete User</a></li>`
   });
   return userList;
 }
@@ -9,7 +9,7 @@ function addUser(users) {
 function showTodos(todos) {
   let todosList = ``;
   todos.forEach(todo => {
-    todosList += `<li>Title: ${todo.name}<br> Completed: false</li>`
+    todosList += `<li>Title: <a href="/todos/${todo.id}">${todo.name}</a><br> Completed: false</li>`
   });
   return todosList;
 }
@@ -18,12 +18,13 @@ function header() {
   return `
   <header>
   <h1>
-    Todoist
+    Todo-Thing
   </h1>
   <nav>
-    <li>Home</li>
-    <li>My Todos</li>
-    <li>Register</li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/users">Users</a></li>
+    <li><a href="/todos">My Todos</a></li>
+    <li><a href="/users/register">Register</a></li>
   </nav>
 </header>`
 }

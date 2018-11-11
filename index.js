@@ -60,7 +60,11 @@ app.post(`/users/register`, (req, res) => {
 app.get('/users/:id([0-9]+)', (req, res) => {
   User.getById(req.params.id)
     .then(user => {
-      res.send(user);
+      res.send(page(`
+        ${helper.header()}
+        ${user.name}
+        ${helper.footer()}
+      `));
     })
 })
 
@@ -119,7 +123,12 @@ app.get('/users/:id([0-9]+)/todos', (req, res) => {
     .then(user => {
       user.getTodos()
         .then(todo => {
-          res.send(helper.showTodos(todo));
+          res.send(page(`
+            ${helper.header()}
+            ${user.name}
+            ${helper.showTodos(todo)}
+            ${helper.footer()}`
+          ));
         })
     })
 })
