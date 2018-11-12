@@ -3,7 +3,9 @@ create table users(
   id serial primary key,
   name text,
   email text,
-  phone text
+  phone text,
+  username varchar(200),
+  password varchar(60)
 );
 
 create table todos(
