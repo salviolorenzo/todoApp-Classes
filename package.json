@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/salviolorenzo/todoApp-Classes#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "node": "^11.1.0",
     "pg-promise": "^8.5.1"
   }
 }

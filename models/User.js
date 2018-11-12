@@ -1,5 +1,6 @@
 const db = require('./db');
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 class User {
   constructor(id, name, email, phone) {
     this.id = id,
@@ -9,13 +10,15 @@ class User {
   }
 
   // CREATE
-  static add(name, email, phone) {
+  static add(name, email, phone, username, password) {
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
     return db.one(`
-      insert into users(name, email, phone)
+      insert into users(name, email, phone, username, password)
       values
-        ($1, $2, $3)
+        ($1, $2, $3, $4, $5)
       returning id`,
-      [name, email, phone])
+      [name, email, phone, username, hash])
       .then(data => {
         const u = new User(data.id, name, email, phone);
         return u;
