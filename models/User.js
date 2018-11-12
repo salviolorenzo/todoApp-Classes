@@ -2,11 +2,13 @@ const db = require('./db');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 class User {
-  constructor(id, name, email, phone) {
+  constructor(id, name, email, phone, username, pwhash) {
     this.id = id,
       this.name = name,
       this.email = email,
-      this.phone = phone
+      this.phone = phone,
+      this.username = username,
+      this.pwhash = pwhash
   }
 
   // CREATE
@@ -43,7 +45,7 @@ class User {
     where id=$1`,
       [id])
       .then(result => {
-        const u = new User(result.id, result.name, result.email, result.phone);
+        const u = new User(result.id, result.name, result.email, result.phone, result.username, result.password);
         return u;
       })
   }
@@ -51,6 +53,15 @@ class User {
   static searchByName(name) {
     return db.one(`
     select * from users where name ilike %$1:raw%`, [name]);
+  }
+
+  static getByUsername(username) {
+    return db.one(`
+      select * from users where username ilike '%$1:raw%'`, [username])
+      .then(result => {
+        const u = new User(result.id, result.name, result.email, result.phone, result.username, result.password);
+        return u;
+      })
   }
 
   getTodos() {

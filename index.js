@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -49,10 +49,43 @@ app.get('/users/register', (req, res) => {
 
 app.post(`/users/register`, (req, res) => {
   console.log(req.body);
-  User.add(req.body.name, req.body.email, req.body.phone)
+  User.add(req.body.name, req.body.email, req.body.phone, req.body.username, req.body.pass)
     .then(user => {
       res.redirect(`/users/${user.id}`);
     })
+})
+
+// LOGIN PAGE
+app.get(`/login`, (req, res) => {
+  res.send(page(`
+    ${helper.header()}
+    ${helper.login()}
+    ${helper.footer()}
+  `))
+})
+
+app.post(`/login`, (req, res) => {
+  const userName = req.body.username;
+  const passWord = req.body.password;
+  User.getByUsername(userName)
+    .catch(err => {
+      console.log(err);
+    })
+    .then(user => {
+      console.log(passWord);
+      console.log(user.pwhash);
+      const didMatch = bcrypt.compareSync(passWord, user.pwhash);
+      console.log(didMatch);
+
+      if (didMatch) {
+        res.redirect('/users');
+      }
+      else {
+        res.redirect('/login');
+      }
+
+    })
+    .catch(console.log);
 })
 
 

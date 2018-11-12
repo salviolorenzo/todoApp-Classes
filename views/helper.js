@@ -44,13 +44,27 @@ function users(content) {
 
 function register() {
   return `<section class="main-form">
-  <form method="post">
+  <form method="post" action="/users/register">
     <input type="text" name="name" placeholder="Name">
     <input type="email" name="email" placeholder="email">
     <input type="text" name="phone" placeholder="phone">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="pass" placeholder="Password">
     <input type="submit" name="submit">
   </form>
 </section>`
+}
+
+function login() {
+  return `
+      <section class="login">
+        <form method="post" action="/login">
+          <input type="text" name="username" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+          <input type="submit">
+        </form>
+      </section>
+  `
 }
 
 function deleteUser(user) {
@@ -103,6 +117,7 @@ module.exports = {
   users,
   deleteUser,
   todos,
+  login,
   register,
   addTodo,
   assignTodo
