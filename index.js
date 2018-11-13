@@ -72,9 +72,7 @@ app.post(`/login`, (req, res) => {
       console.log(err);
     })
     .then(user => {
-      console.log(passWord);
-      console.log(user.pwhash);
-      const didMatch = bcrypt.compareSync(passWord, user.pwhash);
+      const didMatch = user.checkPassword(passWord);
       console.log(didMatch);
 
       if (didMatch) {

@@ -64,6 +64,10 @@ class User {
       })
   }
 
+  checkPassword(password) {
+    return bcrypt.compareSync(password, this.pwhash);
+  }
+
   getTodos() {
     return db.any(`
     select * from todos where user_id = $1`, [this.id]);
