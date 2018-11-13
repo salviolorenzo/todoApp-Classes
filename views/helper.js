@@ -29,6 +29,13 @@ function header() {
 </header>`
 }
 
+function home(content) {
+  return `
+    <section class="home">
+      <h1>Hey ${content}</h1>
+    </section>`
+}
+
 
 
 function footer() {
@@ -112,6 +119,7 @@ function assignTodo() {
 module.exports = {
   addUser,
   showTodos,
+  home,
   header,
   footer,
   users,

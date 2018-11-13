@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "reset": "dropdb todo-db; createdb todo-db; psql -f schema.sql todo-db; psql -f seed.sql todo-db",
+    "reset": "dropdb todo-db; createdb todo-db; psql -f schema.sql todo-db; psql -f seed.sql todo-db; psql todo-db < node_modules/connect-pg-simple/table.sql",
     "debug": "node --inspect-brk index.js"
   },
   "repository": {

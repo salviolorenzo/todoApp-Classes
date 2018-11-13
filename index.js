@@ -3,6 +3,17 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const db = require('./models/db');
+app.use(session({
+  store: new pgSession({
+    pgPromise: db
+  }),
+  secret: 'ungasuibagsuidngfjsdbggnhf',
+  saveUninitialized: false
+}));
+
 app.use(express.static('public'));
 
 const User = require(`./models/User`);
@@ -19,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   res.send(page(`
     ${helper.header()}
+    ${helper.home(req.session.user.name)}
     ${helper.footer()}
   `));
 })
@@ -75,7 +87,9 @@ app.post(`/login`, (req, res) => {
       console.log(didMatch);
 
       if (didMatch) {
-        res.redirect('/users');
+        req.session.user = user;
+        console.log(req.session.user);
+        res.redirect('/');
       }
       else {
         res.redirect('/login');
