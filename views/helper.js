@@ -25,6 +25,10 @@ function header() {
     <li><a href="/users">Users</a></li>
     <li><a href="/todos">My Todos</a></li>
     <li><a href="/users/register">Register</a></li>
+    <li><form method="POST" action="/logout">
+          <input type="submit" value="Logout">  
+      </form>
+    </li>
   </nav>
 </header>`
 }

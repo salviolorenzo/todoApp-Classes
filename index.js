@@ -28,9 +28,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ROOT
 app.get('/', (req, res) => {
+  let visitorName = `Friend`;
+  if (req.session.user) {
+    visitorName = req.session.user.name;
+  }
   res.send(page(`
     ${helper.header()}
-    ${helper.home(req.session.user.name)}
+    ${helper.home(visitorName)}
     ${helper.footer()}
   `));
 })
@@ -62,7 +66,8 @@ app.post(`/users/register`, (req, res) => {
   console.log(req.body);
   User.add(req.body.name, req.body.email, req.body.phone, req.body.username, req.body.pass)
     .then(user => {
-      res.redirect(`/users/${user.id}`);
+      req.session.user = user;
+      res.redirect(`/`);
     })
 })
 
@@ -97,6 +102,11 @@ app.post(`/login`, (req, res) => {
 
     })
     .catch(console.log);
+})
+
+app.post(`/logout`, (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 })
 
 
