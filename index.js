@@ -28,9 +28,25 @@ const helper = require(`./views/helper`);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+function protectRoute(req, res, next) {
+  let isLoggedIn = req.session.user ? true : false;
+  if (isLoggedIn) {
+    next();
+  }
+  else {
+    res.redirect('/login');
+  }
+}
+
+app.use((req, res, next) => {
+  let isLoggedIn = req.session.user ? true : false;
+  console.log(isLoggedIn);
+  next();
+});
+
 
 // ROOT
-app.get('/', (req, res) => {
+app.get('/', protectRoute, (req, res) => {
   let visitorName = `Friend`;
   if (req.session.user) {
     visitorName = req.session.user.name;
@@ -44,7 +60,7 @@ app.get('/', (req, res) => {
 
 
 // Users
-app.get('/users', (req, res) => {
+app.get('/users', protectRoute, (req, res) => {
   User.getAll()
     .then(users => {
       res.send(page(`
