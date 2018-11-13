@@ -1,4 +1,6 @@
-function page(content) {
+const helper = require(`./helper`);
+
+function page(content, isLoggedIn = false) {
   return `<!doctype html>
     <html>
     <head>
@@ -9,7 +11,10 @@ function page(content) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" rel="stylesheet">
     </head>
     <body>
-      ${content}
+    ${
+    isLoggedIn ? helper.logoutButton() : helper.loginOrRegister()
+    }
+    ${content}
     </body>
     <scripts src="">
     </html>`;

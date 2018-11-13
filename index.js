@@ -11,7 +11,10 @@ app.use(session({
     pgPromise: db
   }),
   secret: 'ungasuibagsuidngfjsdbggnhf',
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000
+  }
 }));
 
 app.use(express.static('public'));
@@ -36,7 +39,7 @@ app.get('/', (req, res) => {
     ${helper.header()}
     ${helper.home(visitorName)}
     ${helper.footer()}
-  `));
+  `, req.session.user));
 })
 
 
@@ -47,7 +50,7 @@ app.get('/users', (req, res) => {
       res.send(page(`
       ${helper.header()}
       ${helper.users(helper.addUser(users))}
-      ${helper.footer()}`
+      ${helper.footer()}`, req.session.user
       ));
     });
 })

@@ -14,6 +14,17 @@ function showTodos(todos) {
   return todosList;
 }
 
+function logoutButton() {
+  return `<form action="/logout" method="POST">
+    <input type="submit" value="Logout">
+    </form>`;
+}
+
+function loginOrRegister() {
+  return `<a href="/login">Login</a> |
+  <a href="/users/register">Register</a>`
+}
+
 function header() {
   return `
   <header>
@@ -24,13 +35,9 @@ function header() {
     <li><a href="/">Home</a></li>
     <li><a href="/users">Users</a></li>
     <li><a href="/todos">My Todos</a></li>
-    <li><a href="/users/register">Register</a></li>
-    <li><form method="POST" action="/logout">
-          <input type="submit" value="Logout">  
-      </form>
-    </li>
+    
   </nav>
-</header>`
+</header>`;
 }
 
 function home(content) {
@@ -132,5 +139,7 @@ module.exports = {
   login,
   register,
   addTodo,
-  assignTodo
+  assignTodo,
+  logoutButton,
+  loginOrRegister
 }

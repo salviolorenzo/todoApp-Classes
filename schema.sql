@@ -4,7 +4,7 @@ create table users(
   name text,
   email text,
   phone text,
-  username varchar(200),
+  username varchar(200) unique not null,
   password varchar(60)
 );
 
