@@ -15,7 +15,8 @@ function showTodos(todos) {
 }
 
 function logoutButton() {
-  return `<form action="/logout" method="POST">
+  return `
+  <form action="/logout" method="POST">
     <input type="submit" value="Logout">
     </form>`;
 }
@@ -50,7 +51,9 @@ function home(content) {
 
 
 function footer() {
-  return `<footer></footer>`
+  return `<footer>
+    <p>Brought to you by the beanie boiz</p>
+  </footer>`
 }
 
 function users(content) {
@@ -77,8 +80,10 @@ function login() {
   return `
       <section class="login">
         <form method="post" action="/login">
-          <input type="text" name="username" placeholder="Username">
-          <input type="password" name="password" placeholder="Password">
+        <label>Username: </label><br>
+          <input type="text" name="username" placeholder="Joe123"><br>
+          <label>Password: </label><br>
+          <input type="password" name="password" placeholder="p455word!"><br>
           <input type="submit">
         </form>
       </section>

@@ -52,7 +52,6 @@ app.get('/', protectRoute, (req, res) => {
     visitorName = req.session.user.name;
   }
   res.send(page(`
-    ${helper.header()}
     ${helper.home(visitorName)}
     ${helper.footer()}
   `, req.session.user));
@@ -64,7 +63,6 @@ app.get('/users', protectRoute, (req, res) => {
   User.getAll()
     .then(users => {
       res.send(page(`
-      ${helper.header()}
       ${helper.users(helper.addUser(users))}
       ${helper.footer()}`, req.session.user
       ));
@@ -75,7 +73,6 @@ app.get('/users', protectRoute, (req, res) => {
 // User Registry || CREATE NEW USER
 app.get('/users/register', (req, res) => {
   res.send(page(`
-  ${helper.header()}
   ${helper.register()}
   ${helper.footer()}
   `));
@@ -93,7 +90,6 @@ app.post(`/users/register`, (req, res) => {
 // LOGIN PAGE
 app.get(`/login`, (req, res) => {
   res.send(page(`
-    ${helper.header()}
     ${helper.login()}
     ${helper.footer()}
   `))
@@ -134,7 +130,6 @@ app.get('/users/:id([0-9]+)', (req, res) => {
   User.getById(req.params.id)
     .then(user => {
       res.send(page(`
-        ${helper.header()}
         ${user.name}
         ${helper.footer()}
       `));
@@ -143,7 +138,6 @@ app.get('/users/:id([0-9]+)', (req, res) => {
 
 app.get(`/users/:id([0-9]+)/edit`, (req, res) => {
   res.send(page(`
-  ${helper.header()}
   ${helper.register()}
   ${helper.footer()}
   `));
@@ -164,7 +158,6 @@ app.get(`/users/:id([0-9]+)/delete`, (req, res) => {
   User.getById(req.params.id)
     .then(user => {
       res.send(page(`
-        ${helper.header()}
         ${helper.deleteUser(user)}
         ${helper.footer()}
       `))
@@ -197,7 +190,6 @@ app.get('/users/:id([0-9]+)/todos', (req, res) => {
       user.getTodos()
         .then(todo => {
           res.send(page(`
-            ${helper.header()}
             ${user.name}
             ${helper.showTodos(todo)}
             ${helper.footer()}`
@@ -210,7 +202,6 @@ app.get('/todos', (req, res) => {
   Todo.getAll()
     .then(todos => {
       res.send(page(`
-      ${helper.header()}
       ${helper.todos(helper.showTodos(todos))}
       ${helper.footer()}`
       ));
@@ -228,7 +219,6 @@ app.get('/todos/:id([0-9]+)/', (req, res) => {
 // ASSIGN TODOS BASED ON USER ID
 app.get(`/todos/:id([0-9]+)/assign`, (req, res) => {
   res.send(page(`
-  ${helper.header()}
   ${helper.assignTodo()}
   ${helper.footer()}
   `));
@@ -245,8 +235,7 @@ app.post(`/todos/:id([0-9]+)/assign`, (req, res) => {
 // ADD Todo
 app.get(`/todos/add`, (req, res) => {
   res.send(page(
-    `${helper.header()}
-    ${helper.addTodo()}
+    `${helper.addTodo()}
     ${helper.footer()}`
   ));
 })

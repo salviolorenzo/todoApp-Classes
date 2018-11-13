@@ -11,6 +11,7 @@ function page(content, isLoggedIn = false) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" rel="stylesheet">
     </head>
     <body>
+    ${helper.header()}
     ${
     isLoggedIn ? helper.logoutButton() : helper.loginOrRegister()
     }
