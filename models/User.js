@@ -59,7 +59,7 @@ class User {
     return db.one(`
       select * from users where username ilike '%$1:raw%'`, [username])
       .then(result => {
-        const u = new User(result.id, result.name, result.email, result.phone, result.username, result.password);
+        const u = new User(result.id, result.name, result.emailaddress, result.phone, result.username, result.password);
         return u;
       })
   }
